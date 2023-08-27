@@ -29,6 +29,11 @@ public class RegistrationTests {
         page = new RegistrationPage(driver);
         page.inputFirstName("firstName");
         page.inputLastName("lastname");
+        page.inputEmail("vadim@example.com");
+        page.inputPhone("1234567890");
+        page.inputSubject("Test");
+        page.inputAddress("Test");
+
     }
 
     @AfterEach

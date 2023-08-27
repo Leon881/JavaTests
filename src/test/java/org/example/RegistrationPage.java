@@ -21,13 +21,16 @@ public class RegistrationPage extends BasePage {
     public static WebElement EmailField;
 
     @FindBy(id="userNumber")
-    public static WebElement NumberField;
+    public static WebElement PhoneField;
 
     @FindBy(id="dateOfBirthInput")
     public static WebElement DateOfBirthField;
 
-    @FindBy(xpath = "//*[@id=\"subjectsContainer\"]/div/div[1]")
-    public static WebElement SubjectsField;
+    @FindBy(id="currentAddress")
+    public static WebElement AddressField;
+
+    @FindBy(xpath = "//*[@id=\"subjectsInput\"]")
+    public static WebElement SubjectField;
 
 
 
@@ -37,5 +40,21 @@ public class RegistrationPage extends BasePage {
 
     public void inputLastName(String lastName) {
         LastNameField.sendKeys(lastName);
+    }
+
+    public void inputEmail(String email) {
+        EmailField.sendKeys(email);
+    }
+
+    public void inputPhone(String phone) {
+        PhoneField.sendKeys(phone);
+    }
+
+    public void inputSubject(String subject) {
+        SubjectField.sendKeys(subject);
+    }
+
+    public void inputAddress(String address) {
+        AddressField.sendKeys(address);
     }
 }
