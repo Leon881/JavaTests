@@ -7,32 +7,39 @@ import org.junit.jupiter.api.BeforeAll;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 
-import java.time.Duration;
+
 
 public class RegistrationTests {
 
     public static WebDriver driver;
     public static RegistrationPage page;
-    public String URL = "https://demoqa.com/automation-practice-form";
+    public static String URL = "https://demoqa.com/automation-practice-form";
 
 
     @BeforeEach
     public void setUp(){
         driver = WebDriverManager.chromedriver().create();
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(this.URL);
     }
 
     @Test
     public void registrationTest(){
-        page = new RegistrationPage(driver);
+        page = new RegistrationPage(driver, URL);
+        page.OpenPage();
+        page.setFooterPosition();
         page.inputFirstName("firstName");
         page.inputLastName("lastname");
         page.inputEmail("vadim@example.com");
+        page.chooseMaleGender();
         page.inputPhone("1234567890");
+        page.selectDate();
         page.inputSubject("Test");
+        page.chooseHobbieSport();
+        page.uploadFile();
         page.inputAddress("Test");
+        page.selectState();
+        page.selectCity();
+        page.submit();
 
     }
 
