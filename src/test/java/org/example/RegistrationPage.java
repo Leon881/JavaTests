@@ -9,6 +9,7 @@ import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
 
 import java.util.List;
+import java.util.Objects;
 
 
 public class RegistrationPage extends BasePage {
@@ -45,7 +46,7 @@ public class RegistrationPage extends BasePage {
     public static WebElement AddressField;
 
     @FindBy(id="uploadPicture")
-    public static WebElement UlpoadInput;
+    public static WebElement UploadInput;
 
     @FindBy(xpath = "//*[@id=\"state\"]")
     public static WebElement StateField;
@@ -61,6 +62,9 @@ public class RegistrationPage extends BasePage {
     
     @FindBy(xpath = "//*[@id=\"subjectsInput\"]")
     public static WebElement SubjectField;
+
+    @FindBy(id = "example-modal-sizes-title-lg")
+    public static WebElement ResponseFormHeader;
 
     @FindAll({@FindBy(className = "react-datepicker__day")})
     public static List<WebElement> DaysInCalendar;
@@ -98,7 +102,7 @@ public class RegistrationPage extends BasePage {
     }
 
     public void uploadFile() {
-        UlpoadInput.sendKeys("C://Users/Vadim/IdeaProjects/Silicium_Task/src/test/java/org/example/test_files/test_image.jpg");
+        UploadInput.sendKeys("C://Users/Vadim/IdeaProjects/Silicium_Task/src/test/java/org/example/test_files/test_image.jpg");
     }
 
     public void selectState() {
@@ -137,6 +141,13 @@ public class RegistrationPage extends BasePage {
 
     public void setFooterPosition(){
         ((JavascriptExecutor)webdriver).executeScript("document.getElementsByTagName('footer')[0].style.position='relative'");
+    }
+
+    public void shouldExistsResponseForm() {
+        assert WaitElementPresence(10, "class", "modal"): "Response form did not appear";
+        String headerFormText = ResponseFormHeader.getText();
+        assert Objects.equals(headerFormText, "Thanks for submitting the form") : "Header text is not right";
+
     }
 
 }

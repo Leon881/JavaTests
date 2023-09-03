@@ -40,6 +40,7 @@ public class RegistrationTests {
         page.selectState();
         page.selectCity();
         page.submit();
+        page.shouldExistsResponseForm();
 
     }
 
