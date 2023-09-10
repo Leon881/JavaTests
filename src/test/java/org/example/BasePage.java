@@ -7,11 +7,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+// Базовый класс. Тут собрал методы, которые будут общими для других классов-страниц
 public class BasePage {
 
     public WebDriver webdriver;
     public String url;
-    public BasePage ( WebDriver webdriver, String url) {
+
+    public BasePage(WebDriver webdriver, String url) {
         this.webdriver = webdriver;
         this.url = url;
         PageFactory.initElements(webdriver, this);
@@ -22,7 +24,8 @@ public class BasePage {
         webdriver.get(url);
     }
 
-    public Boolean WaitElementPresence(Integer timeout, String locatorType,  String locator ) {
+    // Ожидание появление элемента. Нужно задать тег и локатор
+    public Boolean WaitElementPresence(Integer timeout, String locatorType, String locator) {
         WebDriverWait wait = new WebDriverWait(webdriver, Duration.ofSeconds(timeout));
         try {
             switch (locatorType.toLowerCase()) {
@@ -37,7 +40,8 @@ public class BasePage {
         return true;
     }
 
-    public Boolean WaitElementBeClickable (Integer timeout, WebElement element) {
+    // Ожидание пока элемент станет кликабельным
+    public Boolean WaitElementBeClickable(Integer timeout, WebElement element) {
         WebDriverWait wait = new WebDriverWait(webdriver, Duration.ofSeconds(timeout));
         wait.until(ExpectedConditions.elementToBeClickable(element));
         try {
